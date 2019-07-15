@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JUST TO DO</title>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+  <style>
+ 
+      h1{
+        background-color:rgb(59,89,152);
+        border-radius:30px 30px 5px 5px;
+        border-color:rgb(59,89,152);
+        border-style:solid;
+        padding:20px 10px;
+        font-style:italic;
+        text-align:center;
+      }
+      .container{
+        border-color:white;
+        border-style:solid;
+        background-color:white;
+        border-radius:30px 30px 30px 30px;   
+        font-size:18px;
+        padding:150px ;
+      }
+     #input{
+      border-radius:50px 50px 50px 50px; 
+      height:25px;
+     }
+      .toDoList{
+        border-color:gray;
+        border-style: none solid solid solid;
+        background-color:white;
+        border-radius:5px 5px 30px 30px;
+        padding:15px 200px;
+       
+        text-align:left;
+      }
+      .add{
+
+          border-style:solid;
+         color:white;
+        background-color:rgb(0, 132, 255);
+        border-radius:10px 10px 10px 10px;
+        font-size:15px;
+        }
+        .delete{
+          border-style:solid;
+         color:white;
+        background-color:rgb(255, 30, 0);
+        border-radius:10px 10px 10px 10px;
+        font-size:15px;
+        }
+        .toDos{
+          border-style:none none dotted none;border-color:rgb(133, 121, 121);
+        }
+       
+      
+  </style>
+</head>
+<body>
+             <!--rgba(240,0,0,0.6)-->
+        <div class="container">
+                <h1 style="color:white" >:: To Do List :: &nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" placeholder="  Enter a new Task" id="input" >  
+                  <button  class="add" >add</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <img src="/Users/huyuqi/Desktop/hw2/images.png" width="70" height="50" align="right"> &nbsp;
+                 <!--- <img src="/Users/huyuqi/Desktop/hw2/facehaha.gif"  width="100" height="50"> -->
+                </h1>            
+                <div class="toDoList";></div>  
+              </div>
+             
+           
+<script>
+  
+    $(document).ready(function(){
+      $(".add").click(function(){
+       var inputValue = $("#input").val();
+       if(inputValue.trim().length == 0){
+         alert("請輸入待辦事項");
+         $("#input").val("");}
+        else{$(".toDoList").append(
+      `<div  class="toDos">  
+     
+   <a href="/Users/huyuqi/Desktop/hw2/good.png"> <img src="/Users/huyuqi/Desktop/hw2/good.png" width="30" height="30"></a>&nbsp;&nbsp;
+        <input type="checkbox" class="Status" >&nbsp;&nbsp;&nbsp;&nbsp;
+        <p style="display:inline-block;"  >
+                  ${inputValue}</p>
+        <button class="delete">delete</button>
+       </div>`
+    );
+
+    $("#input").val("");
+    $(".Status").each(function(){
+      $(this).click(function(){
+        var status = $(this).prop("checked");
+        if(status == true){
+          $(this).parent().children("p").css({"text-decoration": "line-through","font-style":"italic","color":"red"});
+         $(".delete").each(function(){
+      $(this).click(function(){
+       $(this).closest("div").remove(); 
+      })
+    })
+        }
+         if(status==false){
+           $(this).parent().children("p").css({"text-decoration": "none","color": "black"});
+          }
+        });
+      });
+   
+        }});
+  });
+   
+    //gergr
+
+
+</script>
+</body>
+</html>
